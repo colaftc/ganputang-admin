@@ -58,9 +58,9 @@ class ProductController extends Controller
 			$grid->name('名称')->editable();
 			$grid->spec('规格')->editable();
 			$grid->brand('品牌')->editable();
-			$grid->in_price('进价')->editable();
-			$grid->out_price('指导零售价')->editable();
-			$grid->out_wholesaleprice('指导批发价')->editable();
+			$grid->in_price('进价')->editable()->sortable();
+			$grid->out_price('指导零售价')->editable()->sortable();
+			$grid->out_wholesaleprice('指导批发价')->editable()->sortable();
 			$grid->supplier('供应商')->display(function($s){
 				return "<i>{$s['name']}</i>";
 			});;
@@ -68,6 +68,7 @@ class ProductController extends Controller
 				return "<i>{$type['name']}</i>";
 			});;
 			$grid->remarks('备注');
+			$gird->create_at('创建于')->sortable();
 
 			$grid->filter(function($filter){
 				$filter->disableIdFilter();

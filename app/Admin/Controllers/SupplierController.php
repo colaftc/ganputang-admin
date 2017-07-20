@@ -33,7 +33,7 @@ class SupplierController extends Controller
 			$grid->brandholder('品牌持有人')->display(function($brandholder){
 				return $brandholder ? '是':'否' ;
 			});
-			$grid->products()->display(function($products) use ($grid){
+			$grid->products('产品数')->display(function($products) use ($grid){
 				$count=count($products);
 				return "<a href='/admin/supplier/{$this->id}/products'>共{$count}款产品</a>";
 			});

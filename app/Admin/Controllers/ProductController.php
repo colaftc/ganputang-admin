@@ -68,7 +68,7 @@ class ProductController extends Controller
 				return "<i>{$type['name']}</i>";
 			});;
 			$grid->remarks('备注');
-			$gird->create_at('创建于')->sortable();
+			$grid->created_at('创建于')->sortable();
 
 			$grid->filter(function($filter){
 				$filter->disableIdFilter();

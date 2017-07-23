@@ -69,7 +69,7 @@ class ExpenditureController extends Controller
 			$grid->type('类别')->display(function($type){
 				return "<i>{$type['name']}</i>";
 			});;
-			$grid->created_at('创建于')->sortable();
+			$grid->paydate('付款时间')->sortable();
 
 			$grid->filter(function($filter){
 				$filter->disableIdFilter();

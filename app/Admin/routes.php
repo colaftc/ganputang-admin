@@ -14,4 +14,7 @@ Route::group([
     $router->resource('product-type',ProductTypeController::class);
     $router->resource('supplier',SupplierController::class);
     $router->resource('product',ProductController::class);
+    $router->resource('shop',ShopController::class);
+    $router->resource('expenses_type',ExpensesTypeController::class);
+    $router->resource('expenditure',ExpenditureController::class);
 });

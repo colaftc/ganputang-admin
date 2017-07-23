@@ -23,7 +23,7 @@ Route::get('/test', function(){
 });
 Route::get('/order-upload','CostController@upload');
 Route::get('/display-order',function(){
-	$tborders=App\Tborder::completed()->orderBy('buytime')->get();
+	$tborders=App\TbOrder::completed()->orderBy('buytime')->get();
 	$count=App\TbOrder::completed()->count();
 	$remarks_count=App\TbOrder::remarked()->count();
 	$total_price=0.0;

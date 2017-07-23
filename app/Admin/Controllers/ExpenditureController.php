@@ -21,10 +21,10 @@ class ExpenditureController extends Controller
 		return Admin::form(Expenditure::class,function(Form $form){
 			$form->text('title','名目');
 			$form->text('amount','金额')->rules('numeric');
-			$form->radio('was_paid','已付清')->value(true);
-			$form->radio('has_receipt','有单据')->value(true);
+			$form->radio('was_paid','已付清')->options([0=>'是',1=>'否'])->default(0);
+			$form->radio('has_receipt','有票据')->options([0=>'是',1=>'否'])->default(0);
 			$form->text('remarks','备注')->value('无');
-			$form->datetime('paydate','付款日期');
+			$form->date('paydate','付款日期');
 			$form->select('type_id','类别')->options(function(){
 				$result=[];
 				$types=ExpensesType::all()->toArray();
@@ -56,8 +56,12 @@ class ExpenditureController extends Controller
 			$grid->id('ID')->sortable();
 			$grid->title('名目')->editable();
 			$grid->amount('金额')->editable()->sortable();
-			$grid->has_receipt('有单据')->editable()->sortable();
-			$grid->was_paid('已付清')->editable();
+			$grid->column('has_receipt','有票据')->display(function($val){
+				return $val ? '否':'是';
+			});
+			$grid->column('was_paid','已付清')->display(function($val){
+				return $val ? '否':'是';
+			});
 			$grid->remarks('备注')->editable();
 			$grid->shop('店铺')->display(function($s){
 				return "<i>{$s['name']}</i>";
@@ -65,7 +69,6 @@ class ExpenditureController extends Controller
 			$grid->type('类别')->display(function($type){
 				return "<i>{$type['name']}</i>";
 			});;
-			$grid->remarks('备注');
 			$grid->created_at('创建于')->sortable();
 
 			$grid->filter(function($filter){

@@ -76,7 +76,7 @@ class ExpenditureController extends Controller
 				$filter->useModal();
 				$filter->like('title','名目');
 				$filter->like('remarks','备注');
-				$filter->between('paydate','进价');
+				$filter->between('paydate','支付日期');
 			});
 		});
 	}
